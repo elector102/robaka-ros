@@ -12,7 +12,7 @@
   <xacro:property name="caster_wheel_joint_offset" value="0.12"/>
 
   <xacro:include filename="$(find robaka)/urdf/robaka_v2_gazebo_plugins.xacro"/>
-  
+
   <material name="blue">
     <color rgba="0 0 0.8 1"/>
   </material>
@@ -34,16 +34,15 @@
 
   <!-- Import Rviz colors -->
 <!--  <xacro:include filename="$(find ros_robotics)/urdf/materials.xacro" /> -->
-  
+
   <xacro:macro name="box_inertia" params="m w h d">
     <inertial>
       <mass value="${m}"/>
       <inertia ixx="${m / 12.0 * (d*d + h*h)}" ixy="0.0" ixz="0.0" iyy="${m / 12.0 * (w*w + h*h)}" iyz="0.0" izz="${m / 12.0 * (w*w + d*d)}"/>
     </inertial>
   </xacro:macro>
- 
+
   <link name="base_footprint">
-    <xacro:box_inertia m="8" w="0.001" h="0.001" d="0.001"/>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <material name="white"/>
@@ -52,7 +51,7 @@
         </geometry>
     </visual>
   </link>
- 
+
   <link name="base_link">
     <xacro:box_inertia m="1" w="${base_len}" h="${base_width}" d="0.01"/>
     <visual>
@@ -67,7 +66,7 @@
       </geometry>
     </collision>
   </link>
- 
+
   <joint name="base_link_joint" type="fixed">
     <origin xyz="0 0 ${wheel_radius + 0.005}" rpy="0 0 0" />
     <parent link="base_footprint"/>
@@ -77,14 +76,14 @@
   <xacro:macro name="cylinder_inertia" params="m r h">
     <inertial>
       <mass value="${m}"/>
-      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0" iyy="${m*(3*r*r+h*h)/12}" iyz = "0" izz="${m*r*r/2}"/> 
+      <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0" iyy="${m*(3*r*r+h*h)/12}" iyz = "0" izz="${m*r*r/2}"/>
     </inertial>
   </xacro:macro>
 
   <xacro:macro name="wheel" params="prefix reflect">
     <link name="${prefix}_wheel">
       <visual>
-	<material name="darkgray"/>
+	      <material name="darkgray"/>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry>
           <cylinder radius="${wheel_radius}" length="0.02"/>
@@ -134,7 +133,7 @@
     <xacro:sphere_inertia m="5" r="${caster_wheel_radius}"/>
   </link>
 
-  <joint name="caster_wheel_joint" type="continuous">
+  <joint name="caster_wheel_joint" type="fixed">
     <axis xyz="0 1 0" rpy="0 0 0" />
     <parent link="base_link"/>
     <child link="caster_wheel"/>
@@ -171,4 +170,35 @@
   <link name="camera" type="fixed">
   </link>
 
+
+<gazebo reference="left_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+  <!-- -minDepth: Distance at which the wheel can insert under the floor.
+  For more information you can see http://osrf-distributions.s3.amazonaws.com/gazebo/api/1.6.3/classgazebo_1_1physics_1_1SurfaceParams.html#a648279b02a66224e3bbb361784e2964a -->
+  <minDepth>0.0001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+
+
+<gazebo reference="right_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>100.0</kd>
+  <!-- -minDepth: Distance at which the wheel can insert under the floor.
+  For more information you can see http://osrf-distributions.s3.amazonaws.com/gazebo/api/1.6.3/classgazebo_1_1physics_1_1SurfaceParams.html#a648279b02a66224e3bbb361784e2964a -->
+  <minDepth>0.0001</minDepth>
+  <maxVel>1.0</maxVel>
+</gazebo>
+
+
+<gazebo reference="caster_wheel">
+  <mu1>0.1</mu1>
+  <mu2>0.1</mu2>
+  <kp>1000000.0</kp>
+  <kd>1.0</kd>
+</gazebo>
 </robot>

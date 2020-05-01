@@ -12,12 +12,12 @@ To start:
 $ sudo apt-get install ros-melodic-desktop-full
 $ rosdep install robaka
 $ catkin_make
-$ roslaunch headlessrobaka robaka.launch
+$ roslaunch robaka headlessrobaka.launch
 ```
 
 On desktop:
 ```
-$ roslaunch uirobaka.launch
+$ roslaunch robaka uirobaka.launch
 OR
 $ roslaunch robaka robaka_cartographer_localization.launch load_state_filename:=<FULLPATH>/laserdata25.bag.pbstream
 ```
