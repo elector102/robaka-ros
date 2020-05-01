@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <robot>
 <!--Gazebo Differential Drive Plugin-->
-
-
 <gazebo>
   <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
     <alwaysOn>true</alwaysOn>
