@@ -54,9 +54,11 @@
   </include> -->
 
 
-  <!-- PS4 joypad -->
+  <!-- Generic joypad -->
   <include file="$(find teleop_twist_joy)/launch/teleop.launch">
     <remap from="cmd_vel" to="joypad_teleop/cmd_vel"/>
+    <param name="joy_config" value="xbox"/>
+    <param name="scale_angular_turbo" value="0.8"/>
   </include>
 
   <!-- Twist MUX -->
