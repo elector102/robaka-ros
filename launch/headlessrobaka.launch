@@ -57,8 +57,7 @@
   <!-- Generic joypad -->
   <include file="$(find teleop_twist_joy)/launch/teleop.launch">
     <remap from="cmd_vel" to="joypad_teleop/cmd_vel"/>
-    <param name="joy_config" value="xbox"/>
-    <param name="scale_angular_turbo" value="0.8"/>
+    <arg name="config_filepath" value="$(find robaka)/conf/xbox_one.yaml"/>
   </include>
 
   <!-- Twist MUX -->
@@ -79,6 +78,6 @@
 -->
 
   <!-- ROS control -->
-  <include file="$(find hoverboard_driver)/launch/hoverboard.launch" />
+  <!-- <include file="$(find hoverboard_driver)/launch/hoverboard.launch" /> -->
 
 </launch>

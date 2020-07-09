@@ -11,7 +11,7 @@ transform_tolerance: 1.0
 meter_scoring: true
 always_send_full_costmap: true
 
-footprint: [[-0.20, -0.22], [-0.20, 0.22], [0.20, 0.22], [0.20, -0.22]]
+footprint: [[-0.33, -0.25], [-0.33, 0.25], [0.33, 0.25], [0.33, -0.25]]
 footprint_padding: 0.05
 
 plugins:
