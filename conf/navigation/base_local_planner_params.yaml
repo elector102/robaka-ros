@@ -58,7 +58,7 @@ TebLocalPlannerROS:
   publish_traj_pc: true
 
 # TEB local planner
-  wheelbase: 0.355
+  wheelbase: 0.46
   allow_init_with_backwards_motion: true
   global_plan_overwrite_orientation: True
 
