@@ -63,6 +63,7 @@
   <!-- Generic joypad -->
   <include file="$(find teleop_twist_joy)/launch/teleop.launch">
     <remap from="cmd_vel" to="joypad_teleop/cmd_vel"/>
+    <arg name="joy_dev" value="/dev/input/js4"/>
     <arg name="config_filepath" value="$(find robaka)/conf/xbox_one.yaml"/>
   </include>
 
