@@ -10,6 +10,7 @@
     <!-- <include file="$(find zed_wrapper)/launch/zed.launch">
         <param name="base_frame"  type="string" value="zed"/>
     </include> -->
+    <!-- <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan_loader" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet $(arg manager)">
     <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan_loader" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet $(arg manager)">
         <param name="scan_height" value="10"/>
         <param name="output_frame_id" value="/depth_camera_link"/>
@@ -17,7 +18,18 @@
         <param name="base_frame"  type="string" value="zed"/>
         <remap from="image" to="depth/image_raw"/>
         <remap from="scan" to="/scan"/>
-    </node>
+    </node> -->
+
+<node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
+    <remap from="image" to="/naoqi_driver/camera/depth/image_raw" />
+    <param name="output_frame_id" value="CameraDepth_frame" />
+    <param name="scan_height" value="10" />
+    <param name="range_max" value="$(arg range_max)" />
+    <param name="output_frame_id" value="/zed"/>
+    <param name="range_min" value="0.3"/>
+    <remap from="image" to="zed/zed_node/depth/depth_registered"/>
+    <remap from="scan" to="/scan"/>
+  </node>
     <!-- <node pkg="semantic_segmentation" type="segmentation_node" name="segmentation_node" output="screen" ns="/camera/color">
 	  <param name="topic_image" value="image_raw" />
     </node> -->
