@@ -155,12 +155,12 @@
   </joint>
   <link name="imu" />
 
-  <joint name="lidar_joint" type="fixed">
+  <joint name="zed_joint" type="fixed">
     <parent link="base_link" />
-    <child link="lidar" />
+    <child link="zed" />
     <origin xyz="0.0 0.0 0.12" rpy="0 0 3.14159" />
   </joint>
-  <link name="lidar">
+  <link name="zed">
     <visual>
       <material name="blue" />
       <origin xyz="0 0 0" rpy="0 0 0"/>
