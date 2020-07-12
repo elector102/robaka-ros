@@ -7,7 +7,9 @@
 	     <arg name="enable_depth" value="false"/>
     </include> -->
 
-    <include file="$(find zed_wrapper)/launch/zed.launch"/>
+    <include file="$(find zed_wrapper)/launch/zed.launch">
+        <param name="base_frame"  type="string" value="zed"/>
+    </include>
 
     <!-- <node pkg="semantic_segmentation" type="segmentation_node" name="segmentation_node" output="screen" ns="/camera/color">
 	  <param name="topic_image" value="image_raw" />
