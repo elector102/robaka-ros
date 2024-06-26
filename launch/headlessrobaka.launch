@@ -29,22 +29,7 @@
     <param name="frequency"    type="double" value="7"/>
     <remap from="scan" to="base_scan"/>
   </node>-->
-  <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
-    <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>
-    <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
-    <!--param name="serial_baudrate"     type="int"    value="256000"--><!--A3 -->
-    <param name="frame_id"            type="string" value="laser"/>
-    <param name="inverted"            type="bool"   value="false"/>
-    <param name="angle_compensate"    type="bool"   value="true"/>
-    <remap from="scan" to="base_scan"/>
-  </node>
-
-  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
-    <rosparam command="load" file="$(find robaka)/conf/laser_filters.yaml" />
-    <remap from="scan" to="base_scan" />
-    <remap from="scan_filtered" to="scan" />
-  </node>
-
+ 
   <!-- IMU -->
   <!-- <node pkg="adafruit_imu" type="imu_node" name="imu_node" output="screen" /> -->
   <!-- IMU filter -->
@@ -72,7 +57,7 @@
   <!-- Generic joypad -->
   <include file="$(find teleop_twist_joy)/launch/teleop.launch">
     <remap from="cmd_vel" to="joypad_teleop/cmd_vel"/>
-    <arg name="joy_dev" value="/dev/input/js4"/>
+    <arg name="joy_dev" value="/dev/input/js0"/>
     <arg name="config_filepath" value="$(find robaka)/conf/xbox_one.yaml"/>
   </include>
 
